@@ -1,24 +1,22 @@
-import logo from './logo.svg';
+import { useSelector } from 'react-redux';
 import './App.css';
-
+import { inc , dec } from './states/reducers';
+import { useDispatch } from 'react-redux';
 function App() {
+  //get initial state
+  const curState = useSelector((state)=>state.number)
+  const dispatch = useDispatch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>React REDUX</h1>
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h1>{curState}</h1>
+        <div>
+          <button onClick={()=>dispatch(inc(5))}>INC</button>
+          <button onClick={()=>dispatch(dec())}>DEC</button>
+        </div>
+      </div>
+    </>
   );
 }
 
